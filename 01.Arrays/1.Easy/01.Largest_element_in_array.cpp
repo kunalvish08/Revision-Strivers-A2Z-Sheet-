@@ -142,3 +142,68 @@ Space: O(1)
 * Why can't this be done in less than O(n)?
 * What if the array is empty?
 
+### Follow-up: Find both the Largest and Smallest Element in one traversal
+
+### Intuition
+
+Instead of traversing the array twice, maintain two variables:
+
+* `largest`
+* `smallest`
+
+For every element:
+
+* If it's greater than `largest`, update `largest`.
+* If it's smaller than `smallest`, update `smallest`.
+
+Since every element is checked once, we get both answers in a single pass.
+
+---
+
+### Algorithm
+
+1. Initialize:
+
+   * `largest = arr[0]`
+   * `smallest = arr[0]`
+2. Traverse the array from index `1`.
+3. For every element:
+
+   * If `arr[i] > largest`, update `largest`.
+   * If `arr[i] < smallest`, update `smallest`.
+4. Return both values.
+
+---
+
+### C++ Solution
+
+```cpp
+pair<int, int> largestAndSmallest(vector<int>& arr) {
+    int largest = arr[0];
+    int smallest = arr[0];
+
+    for (int i = 1; i < arr.size(); i++) {
+        if (arr[i] > largest)
+            largest = arr[i];
+
+        if (arr[i] < smallest)
+            smallest = arr[i];
+    }
+
+    return {largest, smallest};
+}
+```
+
+### Time Complexity
+
+`O(N)`
+
+### Space Complexity
+
+`O(1)`
+
+---
+
+### Interviewer's Expectation
+
+The interviewer asks this follow-up to check whether you can optimize by collecting multiple results in a single traversal instead of writing separate loops. This demonstrates good algorithmic thinking without increasing time or space complexity.
